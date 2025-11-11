@@ -34,7 +34,13 @@ import { Auditorium } from "./collections/Auditorium";
 import { Atl } from "./collections/Atl";
 import { Library } from "./collections/Library";
 import { Smartclass } from "./collections/Smartclass";
-import { Event } from "./collections/Event";
+import { Preprimary } from "./collections/Preprimary";
+import { Secondary } from "./collections/Secondary";
+import { SeniorSecondary } from "./collections/SeniorSecondary";
+import { YearPlanandCalender } from "./collections/YearPlanandCalender";
+import { Result } from "./collections/Result";
+import { Clubs } from "./collections/Clubs";
+import { Department } from "./collections/Department";
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -95,7 +101,13 @@ export default buildConfig({
     Atl,
     Library,
     Smartclass,
-    Event,
+    Preprimary,
+    Secondary,
+    SeniorSecondary,
+    YearPlanandCalender,   
+    Result,
+    Clubs,
+    Department
   ],
   
   // Add the import-export plugin with additional config to help with compatibility
