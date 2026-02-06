@@ -52,7 +52,7 @@ const Admissions: CollectionConfig = {
       }
     },
     {
-      name: "ageOn31stMay",
+      name: "ageOn31stMarch",
       type: "number",
     },
     {
@@ -72,8 +72,14 @@ const Admissions: CollectionConfig = {
       name: "fatherName",
       type: "text",
     },
+    { name: "fatherOccupation",
+      type: "text",
+    },
     {
       name: "motherName",
+      type: "text",
+    },
+    { name: "motherOccupation",
       type: "text",
     },
     {
