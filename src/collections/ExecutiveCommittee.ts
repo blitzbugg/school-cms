@@ -5,7 +5,7 @@ export const ExecutiveCommittee: CollectionConfig = {
   slug: 'executive-committee',
   admin: {
     useAsTitle: 'name',
-    group: "About Foundation",
+    group: "The School",
     defaultColumns: ['name', 'title', 'order'],
   },
   access: {

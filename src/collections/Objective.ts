@@ -5,7 +5,7 @@ const Objectives: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'updatedAt'],
-    group: 'About Foundation',
+    group: 'The School',
   },
   access: {
     read: () => true, // Public read access

@@ -9,7 +9,7 @@ const TC: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'file', 'updatedAt'],
-    group: 'Documents',
+    group: 'Mandatory Disclosures',
   },
   access: {
     read: () => true, // everyone can see

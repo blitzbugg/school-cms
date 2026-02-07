@@ -3,7 +3,7 @@ import { CollectionConfig } from "payload";
 export const Announcements: CollectionConfig = {
   slug: "announcements",
   admin: {
-    group: "Announcement and Events",
+    group: "Non-Academic",
     useAsTitle: "title",
   },
   access: {

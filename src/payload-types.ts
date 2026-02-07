@@ -69,6 +69,11 @@ export interface Config {
   collections: {
     users: User;
     objectives: Objective;
+    labs: Lab;
+    primary: Primary;
+    departments: Department;
+    events: Event;
+    disclosure: Disclosure;
     management: Management;
     'executive-committee': ExecutiveCommittee;
     institutions: Institution;
@@ -76,21 +81,15 @@ export interface Config {
     mission: Mission;
     pta: Pta;
     'pta-group-photo': PtaGroupPhoto;
-    academics: Academic;
-    nonacademics: Nonacademic;
-    labs: Lab;
     tc: Tc;
-    disclosure: Disclosure;
     gallery: Gallery;
     achievements: Achievement;
     image: Image;
     media: Media;
-    events: Event;
     announcements: Announcement;
     'bus-tables': BusTable;
     admissions: Admission;
     contacts: Contact;
-    primary: Primary;
     sports: Sport;
     playground: Playground;
     conferencehall: Conferencehall;
@@ -105,7 +104,6 @@ export interface Config {
     result: Result;
     fees: Fee;
     clubs: Club;
-    departments: Department;
     exports: Export;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
@@ -116,6 +114,11 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     objectives: ObjectivesSelect<false> | ObjectivesSelect<true>;
+    labs: LabsSelect<false> | LabsSelect<true>;
+    primary: PrimarySelect<false> | PrimarySelect<true>;
+    departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
+    events: EventsSelect<false> | EventsSelect<true>;
+    disclosure: DisclosureSelect<false> | DisclosureSelect<true>;
     management: ManagementSelect<false> | ManagementSelect<true>;
     'executive-committee': ExecutiveCommitteeSelect<false> | ExecutiveCommitteeSelect<true>;
     institutions: InstitutionsSelect<false> | InstitutionsSelect<true>;
@@ -123,21 +126,15 @@ export interface Config {
     mission: MissionSelect<false> | MissionSelect<true>;
     pta: PtaSelect<false> | PtaSelect<true>;
     'pta-group-photo': PtaGroupPhotoSelect<false> | PtaGroupPhotoSelect<true>;
-    academics: AcademicsSelect<false> | AcademicsSelect<true>;
-    nonacademics: NonacademicsSelect<false> | NonacademicsSelect<true>;
-    labs: LabsSelect<false> | LabsSelect<true>;
     tc: TcSelect<false> | TcSelect<true>;
-    disclosure: DisclosureSelect<false> | DisclosureSelect<true>;
     gallery: GallerySelect<false> | GallerySelect<true>;
     achievements: AchievementsSelect<false> | AchievementsSelect<true>;
     image: ImageSelect<false> | ImageSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    events: EventsSelect<false> | EventsSelect<true>;
     announcements: AnnouncementsSelect<false> | AnnouncementsSelect<true>;
     'bus-tables': BusTablesSelect<false> | BusTablesSelect<true>;
     admissions: AdmissionsSelect<false> | AdmissionsSelect<true>;
     contacts: ContactsSelect<false> | ContactsSelect<true>;
-    primary: PrimarySelect<false> | PrimarySelect<true>;
     sports: SportsSelect<false> | SportsSelect<true>;
     playground: PlaygroundSelect<false> | PlaygroundSelect<true>;
     conferencehall: ConferencehallSelect<false> | ConferencehallSelect<true>;
@@ -152,7 +149,6 @@ export interface Config {
     result: ResultSelect<false> | ResultSelect<true>;
     fees: FeesSelect<false> | FeesSelect<true>;
     clubs: ClubsSelect<false> | ClubsSelect<true>;
-    departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
     exports: ExportsSelect<false> | ExportsSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -273,6 +269,164 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * Manage lab facilities and labs showcased on the website
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "labs".
+ */
+export interface Lab {
+  id: number;
+  title: string;
+  /**
+   * Upload an image representing this Lab facility
+   */
+  image: number | Media;
+  description: string;
+  /**
+   * Control the order in which Labs appear (lower numbers appear first)
+   */
+  order?: number | null;
+  /**
+   * Uncheck to hide this facility from the website
+   */
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "primary".
+ */
+export interface Primary {
+  id: number;
+  /**
+   * The main heading for the Pre primary section
+   */
+  title: string;
+  /**
+   * The subtitle text below the main heading
+   */
+  subtitle: string;
+  /**
+   * Upload an image for the objectives section
+   */
+  image: number | Media;
+  /**
+   * Add multiple paragraphs of content for the Pre Primary section
+   */
+  content?:
+    | {
+        /**
+         * Add a paragraph of content
+         */
+        paragraph: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "departments".
+ */
+export interface Department {
+  id: number;
+  /**
+   * Name of the department
+   */
+  name: string;
+  /**
+   * Icon class for the department (e.g., FontAwesome class)
+   */
+  icon?: string | null;
+  /**
+   * Upload an image representing the department
+   */
+  image: number | Media;
+  /**
+   * Description of the department
+   */
+  description: string;
+  /**
+   * Total number of faculty members in the department
+   */
+  'No of Faculty': number;
+  staff?:
+    | {
+        /**
+         * Name of the faculty member
+         */
+        Name: string;
+        /**
+         * Position or title of the faculty member
+         */
+        Position: string;
+        /**
+         * Upload a photo of the faculty member
+         */
+        Photo?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Upload images of faculty members
+   */
+  'staff image'?: (number | null) | Media;
+  /**
+   * Display order of the department
+   */
+  displayOrder: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events".
+ */
+export interface Event {
+  id: number;
+  /**
+   * Title of the event
+   */
+  title: string;
+  /**
+   * description of the event
+   */
+  content: string;
+  /**
+   * Category of the event (e.g., Sports, Cultural, Academic)
+   */
+  category: 'Sports' | 'Cultural' | 'Academic' | 'Other';
+  publishDate?: string | null;
+  /**
+   * Upload images related to the event
+   */
+  images?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "disclosure".
+ */
+export interface Disclosure {
+  id: number;
+  fileName: string;
+  description?: string | null;
+  document: number | Media;
+  /**
+   * Show this document on the website
+   */
+  isActive?: boolean | null;
+  /**
+   * Lower numbers appear first
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -422,81 +576,6 @@ export interface PtaGroupPhoto {
   createdAt: string;
 }
 /**
- * Manage academic facilities and labs showcased on the website
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "academics".
- */
-export interface Academic {
-  id: number;
-  title: string;
-  /**
-   * Upload an image representing this academic facility
-   */
-  image: number | Media;
-  description: string;
-  /**
-   * Control the order in which facilities appear (lower numbers appear first)
-   */
-  order?: number | null;
-  /**
-   * Uncheck to hide this facility from the website
-   */
-  isActive?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "nonacademics".
- */
-export interface Nonacademic {
-  id: number;
-  /**
-   * The title of the non-academic activity (e.g., Sports & Games, Music, etc.)
-   */
-  title: string;
-  /**
-   * Detailed description of the activity. This will be shown when the section is expanded.
-   */
-  description?: string | null;
-  /**
-   * Whether this activity should be displayed on the website.
-   */
-  isActive?: boolean | null;
-  /**
-   * Order in which this activity appears on the page (lower numbers appear first).
-   */
-  sortOrder?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * Manage lab facilities and labs showcased on the website
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "labs".
- */
-export interface Lab {
-  id: number;
-  title: string;
-  /**
-   * Upload an image representing this Lab facility
-   */
-  image: number | Media;
-  description: string;
-  /**
-   * Control the order in which Labs appear (lower numbers appear first)
-   */
-  order?: number | null;
-  /**
-   * Uncheck to hide this facility from the website
-   */
-  isActive?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "tc".
  */
@@ -518,26 +597,6 @@ export interface Tc {
    * Show this TC certificate on the website
    */
   isActive?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "disclosure".
- */
-export interface Disclosure {
-  id: number;
-  fileName: string;
-  description?: string | null;
-  document: number | Media;
-  /**
-   * Show this document on the website
-   */
-  isActive?: boolean | null;
-  /**
-   * Lower numbers appear first
-   */
-  order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -572,32 +631,6 @@ export interface Achievement {
 export interface Image {
   id: number;
   photo: number | Media;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "events".
- */
-export interface Event {
-  id: number;
-  /**
-   * Title of the event
-   */
-  title: string;
-  /**
-   * description of the event
-   */
-  content: string;
-  /**
-   * Category of the event (e.g., Sports, Cultural, Academic)
-   */
-  category: 'Sports' | 'Cultural' | 'Academic' | 'Other';
-  publishDate?: string | null;
-  /**
-   * Upload images related to the event
-   */
-  images?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -708,39 +741,6 @@ export interface Contact {
   email: string;
   phone?: string | null;
   message?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "primary".
- */
-export interface Primary {
-  id: number;
-  /**
-   * The main heading for the Pre primary section
-   */
-  title: string;
-  /**
-   * The subtitle text below the main heading
-   */
-  subtitle: string;
-  /**
-   * Upload an image for the objectives section
-   */
-  image: number | Media;
-  /**
-   * Add multiple paragraphs of content for the Pre Primary section
-   */
-  content?:
-    | {
-        /**
-         * Add a paragraph of content
-         */
-        paragraph: string;
-        id?: string | null;
-      }[]
-    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1092,60 +1092,6 @@ export interface Club {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "departments".
- */
-export interface Department {
-  id: number;
-  /**
-   * Name of the department
-   */
-  name: string;
-  /**
-   * Icon class for the department (e.g., FontAwesome class)
-   */
-  icon?: string | null;
-  /**
-   * Upload an image representing the department
-   */
-  image: number | Media;
-  /**
-   * Description of the department
-   */
-  description: string;
-  /**
-   * Total number of faculty members in the department
-   */
-  'No of Faculty': number;
-  staff?:
-    | {
-        /**
-         * Name of the faculty member
-         */
-        Name: string;
-        /**
-         * Position or title of the faculty member
-         */
-        Position: string;
-        /**
-         * Upload a photo of the faculty member
-         */
-        Photo?: (number | null) | Media;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Upload images of faculty members
-   */
-  'staff image'?: (number | null) | Media;
-  /**
-   * Display order of the department
-   */
-  displayOrder: number;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "exports".
  */
 export interface Export {
@@ -1289,6 +1235,26 @@ export interface PayloadLockedDocument {
         value: number | Objective;
       } | null)
     | ({
+        relationTo: 'labs';
+        value: number | Lab;
+      } | null)
+    | ({
+        relationTo: 'primary';
+        value: number | Primary;
+      } | null)
+    | ({
+        relationTo: 'departments';
+        value: number | Department;
+      } | null)
+    | ({
+        relationTo: 'events';
+        value: number | Event;
+      } | null)
+    | ({
+        relationTo: 'disclosure';
+        value: number | Disclosure;
+      } | null)
+    | ({
         relationTo: 'management';
         value: number | Management;
       } | null)
@@ -1317,24 +1283,8 @@ export interface PayloadLockedDocument {
         value: number | PtaGroupPhoto;
       } | null)
     | ({
-        relationTo: 'academics';
-        value: number | Academic;
-      } | null)
-    | ({
-        relationTo: 'nonacademics';
-        value: number | Nonacademic;
-      } | null)
-    | ({
-        relationTo: 'labs';
-        value: number | Lab;
-      } | null)
-    | ({
         relationTo: 'tc';
         value: number | Tc;
-      } | null)
-    | ({
-        relationTo: 'disclosure';
-        value: number | Disclosure;
       } | null)
     | ({
         relationTo: 'gallery';
@@ -1353,10 +1303,6 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'events';
-        value: number | Event;
-      } | null)
-    | ({
         relationTo: 'announcements';
         value: number | Announcement;
       } | null)
@@ -1371,10 +1317,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'contacts';
         value: number | Contact;
-      } | null)
-    | ({
-        relationTo: 'primary';
-        value: number | Primary;
       } | null)
     | ({
         relationTo: 'sports';
@@ -1431,10 +1373,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'clubs';
         value: number | Club;
-      } | null)
-    | ({
-        relationTo: 'departments';
-        value: number | Department;
       } | null)
     | ({
         relationTo: 'exports';
@@ -1523,6 +1461,85 @@ export interface ObjectivesSelect<T extends boolean = true> {
         paragraph?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "labs_select".
+ */
+export interface LabsSelect<T extends boolean = true> {
+  title?: T;
+  image?: T;
+  description?: T;
+  order?: T;
+  isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "primary_select".
+ */
+export interface PrimarySelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  image?: T;
+  content?:
+    | T
+    | {
+        paragraph?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "departments_select".
+ */
+export interface DepartmentsSelect<T extends boolean = true> {
+  name?: T;
+  icon?: T;
+  image?: T;
+  description?: T;
+  'No of Faculty'?: T;
+  staff?:
+    | T
+    | {
+        Name?: T;
+        Position?: T;
+        Photo?: T;
+        id?: T;
+      };
+  'staff image'?: T;
+  displayOrder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events_select".
+ */
+export interface EventsSelect<T extends boolean = true> {
+  title?: T;
+  content?: T;
+  category?: T;
+  publishDate?: T;
+  images?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "disclosure_select".
+ */
+export interface DisclosureSelect<T extends boolean = true> {
+  fileName?: T;
+  description?: T;
+  document?: T;
+  isActive?: T;
+  order?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1618,44 +1635,6 @@ export interface PtaGroupPhotoSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "academics_select".
- */
-export interface AcademicsSelect<T extends boolean = true> {
-  title?: T;
-  image?: T;
-  description?: T;
-  order?: T;
-  isActive?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "nonacademics_select".
- */
-export interface NonacademicsSelect<T extends boolean = true> {
-  title?: T;
-  description?: T;
-  isActive?: T;
-  sortOrder?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "labs_select".
- */
-export interface LabsSelect<T extends boolean = true> {
-  title?: T;
-  image?: T;
-  description?: T;
-  order?: T;
-  isActive?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "tc_select".
  */
 export interface TcSelect<T extends boolean = true> {
@@ -1663,19 +1642,6 @@ export interface TcSelect<T extends boolean = true> {
   description?: T;
   file?: T;
   isActive?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "disclosure_select".
- */
-export interface DisclosureSelect<T extends boolean = true> {
-  fileName?: T;
-  description?: T;
-  document?: T;
-  isActive?: T;
-  order?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1727,19 +1693,6 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "events_select".
- */
-export interface EventsSelect<T extends boolean = true> {
-  title?: T;
-  content?: T;
-  category?: T;
-  publishDate?: T;
-  images?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1808,23 +1761,6 @@ export interface ContactsSelect<T extends boolean = true> {
   email?: T;
   phone?: T;
   message?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "primary_select".
- */
-export interface PrimarySelect<T extends boolean = true> {
-  title?: T;
-  subtitle?: T;
-  image?: T;
-  content?:
-    | T
-    | {
-        paragraph?: T;
-        id?: T;
-      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1995,29 +1931,6 @@ export interface ClubsSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   image?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "departments_select".
- */
-export interface DepartmentsSelect<T extends boolean = true> {
-  name?: T;
-  icon?: T;
-  image?: T;
-  description?: T;
-  'No of Faculty'?: T;
-  staff?:
-    | T
-    | {
-        Name?: T;
-        Position?: T;
-        Photo?: T;
-        id?: T;
-      };
-  'staff image'?: T;
-  displayOrder?: T;
   updatedAt?: T;
   createdAt?: T;
 }

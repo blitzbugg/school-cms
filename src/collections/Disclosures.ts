@@ -4,7 +4,7 @@ const Disclosure: CollectionConfig = {
   slug: 'disclosure',
   admin: {
     useAsTitle: 'fileName',
-    group: "Documents",
+    group: "Mandatory Disclosures",
     defaultColumns: ['fileName', 'document', 'updatedAt'],
   },
   access: {

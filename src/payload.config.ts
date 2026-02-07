@@ -18,8 +18,6 @@ import BusTables from "./collections/BusTables";
 import ExecutiveCommittee from "./collections/ExecutiveCommittee";
 import PTA from "./collections/PTA";
 import Institution from "./collections/Institutions";
-import Academics from "./collections/Academics";
-import NonAcademics from "./collections/NonAcademics";
 import { importExportPlugin } from '@payloadcms/plugin-import-export'
 import PTAGroupPhoto from "./collections/PTAGroupPhoto";
 import Objective from "./collections/Objective";
@@ -73,6 +71,11 @@ export default buildConfig({
   collections: [
     Users,
     Objective,
+    Labs,
+    Primary,
+    Department,
+    Events,
+    Disclosure,
     Management,
     ExecutiveCommittee,
     Institution,
@@ -80,21 +83,15 @@ export default buildConfig({
     Mission,
     PTA,
     PTAGroupPhoto,
-    Academics,
-    NonAcademics,
-    Labs,
     TC,
-    Disclosure,
     Gallery,
     Achievements,
     Images,
     Media,
-    Events,
     Announcements,
     BusTables,
     Admissions,
     Contacts,
-    Primary,
     Sports,
     Playground,
     Conferencehall,
@@ -109,7 +106,6 @@ export default buildConfig({
     Result,
     Fees,
     Clubs,
-    Department
   ],
   
   // Add the import-export plugin with additional config to help with compatibility

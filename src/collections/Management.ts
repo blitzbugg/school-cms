@@ -5,7 +5,7 @@ export const Management: CollectionConfig = {
   slug: 'management',
   admin: {
     useAsTitle: 'name',
-    group: "About Foundation",
+    group: "The School",
     defaultColumns: ['name', 'designation', 'order'],
   },
   access: {

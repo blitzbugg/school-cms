@@ -7,7 +7,7 @@ export const Leaders: CollectionConfig = {
   },
   admin: {
     useAsTitle: "name",
-    group: "About School",
+    group: "The School",
   },
   access: {
     // 👇 Allow anyone (even unauthenticated users) to read announcements

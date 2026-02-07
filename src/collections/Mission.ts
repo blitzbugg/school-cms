@@ -8,7 +8,7 @@ const Mission: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'updatedAt'],
-    group: 'About School',
+    group: 'The School',
   },
   access: {
     read: () => true, // Public read access

@@ -8,7 +8,7 @@ export const PTA: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
-    group: "About School",
+    group: "Mandatory Disclosures",
     defaultColumns: ['name', 'role', 'isExecutive', 'order', 'academicYear'],
   },
   access: {

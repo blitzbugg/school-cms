@@ -4,7 +4,7 @@ const Institution: CollectionConfig = {
   slug: "institutions",
   admin: {
     useAsTitle: "name",
-    group: "About Foundation",
+    group: "Mandatory Disclosures",
     description: "Manage partner institutions and organizations",
   },
   access: {

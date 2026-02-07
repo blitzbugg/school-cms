@@ -8,7 +8,7 @@ export const Clubs: CollectionConfig = {
     },
     admin: {
         useAsTitle: "title",
-        group: "non-Academic",
+        group: "Non-Academic",
     },
     access: {
         read: () => true,

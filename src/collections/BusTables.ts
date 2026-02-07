@@ -5,7 +5,7 @@ const BusTables: CollectionConfig = {
   slug: "bus-tables",
   admin: {
     useAsTitle: "title",
-    group: "Transport",
+    group: "Mandatory Disclosures",
     defaultColumns: ["title", "createdAt", "updatedAt"],
     description: "Manage college bus schedules and routes",
   },

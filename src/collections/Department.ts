@@ -8,7 +8,7 @@ export const Department: CollectionConfig = {
     },
     admin: {
         useAsTitle: "name",
-        group: "About School",
+        group: "Departments",
     },
     access: {
         read: () => true,

@@ -7,7 +7,7 @@ export const Achievements: CollectionConfig = {
     plural: "Achievements",
   },
   admin: {
-    group: "Achievements",
+    group: "The School",
     useAsTitle: "title",
   },
   access: {

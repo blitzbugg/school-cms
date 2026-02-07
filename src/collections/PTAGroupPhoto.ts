@@ -5,7 +5,7 @@ export const PTAGroupPhoto: CollectionConfig = {
   slug: 'pta-group-photo',
   admin: {
     useAsTitle: 'title',
-    group: "About School",
+    group: "Mandatory Disclosures",
     defaultColumns: ['title', 'academicYear', 'isActive'],
   },
   access: {
