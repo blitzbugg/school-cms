@@ -103,6 +103,7 @@ export interface Config {
     'senior-secondary': SeniorSecondary;
     'year-plan-and-calender': YearPlanAndCalender;
     result: Result;
+    fees: Fee;
     clubs: Club;
     departments: Department;
     exports: Export;
@@ -149,6 +150,7 @@ export interface Config {
     'senior-secondary': SeniorSecondarySelect<false> | SeniorSecondarySelect<true>;
     'year-plan-and-calender': YearPlanAndCalenderSelect<false> | YearPlanAndCalenderSelect<true>;
     result: ResultSelect<false> | ResultSelect<true>;
+    fees: FeesSelect<false> | FeesSelect<true>;
     clubs: ClubsSelect<false> | ClubsSelect<true>;
     departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
     exports: ExportsSelect<false> | ExportsSelect<true>;
@@ -1044,6 +1046,31 @@ export interface Result {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "fees".
+ */
+export interface Fee {
+  id: number;
+  /**
+   * Title for this Fees document (e.g., "Fees Structure 2024")
+   */
+  title: string;
+  /**
+   * Description of what this fees document is for
+   */
+  description?: string | null;
+  /**
+   * Upload the Fees document PDF file
+   */
+  file: number | Media;
+  /**
+   * Show this Fees document on the website
+   */
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "clubs".
  */
 export interface Club {
@@ -1396,6 +1423,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'result';
         value: number | Result;
+      } | null)
+    | ({
+        relationTo: 'fees';
+        value: number | Fee;
       } | null)
     | ({
         relationTo: 'clubs';
@@ -1941,6 +1972,18 @@ export interface ResultSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   document?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "fees_select".
+ */
+export interface FeesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  file?: T;
+  isActive?: T;
   updatedAt?: T;
   createdAt?: T;
 }

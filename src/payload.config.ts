@@ -41,6 +41,7 @@ import { YearPlanandCalender } from "./collections/YearPlanandCalender";
 import { Result } from "./collections/Result";
 import { Clubs } from "./collections/Clubs";
 import { Department } from "./collections/Department";
+import Fees from "./collections/Fees";  
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -106,6 +107,7 @@ export default buildConfig({
     SeniorSecondary,
     YearPlanandCalender,   
     Result,
+    Fees,
     Clubs,
     Department
   ],
