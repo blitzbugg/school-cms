@@ -103,6 +103,7 @@ export interface Config {
     'year-plan-and-calender': YearPlanAndCalender;
     result: Result;
     fees: Fee;
+    textbooks: Textbook;
     clubs: Club;
     exports: Export;
     'payload-jobs': PayloadJob;
@@ -148,6 +149,7 @@ export interface Config {
     'year-plan-and-calender': YearPlanAndCalenderSelect<false> | YearPlanAndCalenderSelect<true>;
     result: ResultSelect<false> | ResultSelect<true>;
     fees: FeesSelect<false> | FeesSelect<true>;
+    textbooks: TextbooksSelect<false> | TextbooksSelect<true>;
     clubs: ClubsSelect<false> | ClubsSelect<true>;
     exports: ExportsSelect<false> | ExportsSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
@@ -1071,6 +1073,31 @@ export interface Fee {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "textbooks".
+ */
+export interface Textbook {
+  id: number;
+  /**
+   * Title of the textbook (e.g., "Mathematics – Class X")
+   */
+  title: string;
+  /**
+   * Additional information about this textbook
+   */
+  description?: string | null;
+  /**
+   * Upload the textbook PDF file
+   */
+  file: number | Media;
+  /**
+   * Show this textbook on the website
+   */
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "clubs".
  */
 export interface Club {
@@ -1369,6 +1396,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'fees';
         value: number | Fee;
+      } | null)
+    | ({
+        relationTo: 'textbooks';
+        value: number | Textbook;
       } | null)
     | ({
         relationTo: 'clubs';
@@ -1916,6 +1947,18 @@ export interface ResultSelect<T extends boolean = true> {
  * via the `definition` "fees_select".
  */
 export interface FeesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  file?: T;
+  isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "textbooks_select".
+ */
+export interface TextbooksSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   file?: T;

@@ -40,6 +40,7 @@ import { Result } from "./collections/Result";
 import { Clubs } from "./collections/Clubs";
 import { Department } from "./collections/Department";
 import Fees from "./collections/Fees";  
+import Textbook from "./collections/Textbook";
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -105,6 +106,7 @@ export default buildConfig({
     YearPlanandCalender,   
     Result,
     Fees,
+    Textbook,
     Clubs,
   ],
   
