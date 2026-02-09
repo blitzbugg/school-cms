@@ -1,10 +1,11 @@
+import { is } from "@payloadcms/db-postgres/drizzle";
 import { CollectionConfig } from "payload";
 
 export const Images: CollectionConfig = {
-  slug: "image",
+  slug: "excellence-image",
   labels: {
-    singular: "Image",
-    plural: "Home Page Images",
+    singular: "Excellence",
+    plural: "Excellence Images",
   },
   admin: {
     useAsTitle: "photo",
@@ -17,6 +18,15 @@ export const Images: CollectionConfig = {
     delete: ({ req }) => !!req.user,
   },
   fields: [
+    {
+      name: "isActive",
+      type: "checkbox",
+      defaultValue: true,
+      admin: {
+        description: "Show this image on the website",
+      },
+    },
+    
     {
       name: "photo",
       type: "upload",
