@@ -13,7 +13,7 @@ import Admissions from "./collections/Admissions";
 import Contacts from "./collections/Contacts";
 import { Events } from "./collections/Events";
 import Management from "./collections/Management";
-import { Images } from "./collections/Images";
+import { Images } from "./collections/Excellence";
 import BusTables from "./collections/BusTables";
 import ExecutiveCommittee from "./collections/ExecutiveCommittee";
 import PTA from "./collections/PTA";
@@ -42,6 +42,7 @@ import { Department } from "./collections/Department";
 import Fees from "./collections/Fees";  
 import Textbook from "./collections/Textbook";
 import Appendix from "./collections/Appendix";
+import { Assembly } from "./collections/Assembly";
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -108,6 +109,7 @@ export default buildConfig({
     Result,
     Fees,
     Appendix,
+    Assembly,
     Textbook,
     Clubs,
   ],

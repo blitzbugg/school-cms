@@ -84,7 +84,7 @@ export interface Config {
     tc: Tc;
     gallery: Gallery;
     achievements: Achievement;
-    image: Image;
+    'excellence-image': ExcellenceImage;
     media: Media;
     announcements: Announcement;
     'bus-tables': BusTable;
@@ -104,6 +104,7 @@ export interface Config {
     result: Result;
     fees: Fee;
     appendix: Appendix;
+    assembly: Assembly;
     textbooks: Textbook;
     clubs: Club;
     exports: Export;
@@ -131,7 +132,7 @@ export interface Config {
     tc: TcSelect<false> | TcSelect<true>;
     gallery: GallerySelect<false> | GallerySelect<true>;
     achievements: AchievementsSelect<false> | AchievementsSelect<true>;
-    image: ImageSelect<false> | ImageSelect<true>;
+    'excellence-image': ExcellenceImageSelect<false> | ExcellenceImageSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     announcements: AnnouncementsSelect<false> | AnnouncementsSelect<true>;
     'bus-tables': BusTablesSelect<false> | BusTablesSelect<true>;
@@ -151,6 +152,7 @@ export interface Config {
     result: ResultSelect<false> | ResultSelect<true>;
     fees: FeesSelect<false> | FeesSelect<true>;
     appendix: AppendixSelect<false> | AppendixSelect<true>;
+    assembly: AssemblySelect<false> | AssemblySelect<true>;
     textbooks: TextbooksSelect<false> | TextbooksSelect<true>;
     clubs: ClubsSelect<false> | ClubsSelect<true>;
     exports: ExportsSelect<false> | ExportsSelect<true>;
@@ -630,10 +632,14 @@ export interface Achievement {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "image".
+ * via the `definition` "excellence-image".
  */
-export interface Image {
+export interface ExcellenceImage {
   id: number;
+  /**
+   * Show this image on the website
+   */
+  isActive?: boolean | null;
   photo: number | Media;
   updatedAt: string;
   createdAt: string;
@@ -1171,6 +1177,24 @@ export interface Appendix {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "assembly".
+ */
+export interface Assembly {
+  id: number;
+  /**
+   * Show this image on the website
+   */
+  isActive?: boolean | null;
+  photo: number | Media;
+  /**
+   * Description of the assembly
+   */
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "textbooks".
  */
 export interface Textbook {
@@ -1420,8 +1444,8 @@ export interface PayloadLockedDocument {
         value: number | Achievement;
       } | null)
     | ({
-        relationTo: 'image';
-        value: number | Image;
+        relationTo: 'excellence-image';
+        value: number | ExcellenceImage;
       } | null)
     | ({
         relationTo: 'media';
@@ -1498,6 +1522,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'appendix';
         value: number | Appendix;
+      } | null)
+    | ({
+        relationTo: 'assembly';
+        value: number | Assembly;
       } | null)
     | ({
         relationTo: 'textbooks';
@@ -1802,9 +1830,10 @@ export interface AchievementsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "image_select".
+ * via the `definition` "excellence-image_select".
  */
-export interface ImageSelect<T extends boolean = true> {
+export interface ExcellenceImageSelect<T extends boolean = true> {
+  isActive?: T;
   photo?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -2091,6 +2120,17 @@ export interface AppendixSelect<T extends boolean = true> {
         passPercentage?: T;
         remarks?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "assembly_select".
+ */
+export interface AssemblySelect<T extends boolean = true> {
+  isActive?: T;
+  photo?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
 }
