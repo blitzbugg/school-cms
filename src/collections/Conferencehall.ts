@@ -12,10 +12,8 @@ export const Conferencehall: CollectionConfig = {
     },
     access: {
         read: () => true,
-        create: () => true,
-        update: () => true,
-        // create: ({ req: { user } }) => Boolean(user), // Only authenticated users can create
-        // update: ({ req: { user } }) => Boolean(user), // Only authenticated users can update
+        create: ({ req: { user } }) => Boolean(user), // Only authenticated users can create
+        update: ({ req: { user } }) => Boolean(user), // Only authenticated users can update
         delete: ({ req: { user } }) => Boolean(user), // Only authenticated users can delete
     },
     fields: [
