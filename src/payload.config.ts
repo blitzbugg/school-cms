@@ -41,6 +41,7 @@ import { Clubs } from "./collections/Clubs";
 import { Department } from "./collections/Department";
 import Fees from "./collections/Fees";  
 import Textbook from "./collections/Textbook";
+import Appendix from "./collections/Appendix";
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -106,6 +107,7 @@ export default buildConfig({
     YearPlanandCalender,   
     Result,
     Fees,
+    Appendix,
     Textbook,
     Clubs,
   ],

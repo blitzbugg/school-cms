@@ -103,6 +103,7 @@ export interface Config {
     'year-plan-and-calender': YearPlanAndCalender;
     result: Result;
     fees: Fee;
+    appendix: Appendix;
     textbooks: Textbook;
     clubs: Club;
     exports: Export;
@@ -149,6 +150,7 @@ export interface Config {
     'year-plan-and-calender': YearPlanAndCalenderSelect<false> | YearPlanAndCalenderSelect<true>;
     result: ResultSelect<false> | ResultSelect<true>;
     fees: FeesSelect<false> | FeesSelect<true>;
+    appendix: AppendixSelect<false> | AppendixSelect<true>;
     textbooks: TextbooksSelect<false> | TextbooksSelect<true>;
     clubs: ClubsSelect<false> | ClubsSelect<true>;
     exports: ExportsSelect<false> | ExportsSelect<true>;
@@ -1073,6 +1075,102 @@ export interface Fee {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "appendix".
+ */
+export interface Appendix {
+  id: number;
+  /**
+   * Select the appendix section this entry belongs to
+   */
+  section: 'general' | 'documents' | 'academics' | 'staff' | 'infrastructure' | 'result_x' | 'result_xii';
+  /**
+   * SL NO from the appendix table (for ordering)
+   */
+  serialNumber: number;
+  /**
+   * Information/Document name (e.g., "NAME OF THE SCHOOL")
+   */
+  title: string;
+  /**
+   * Toggle to show/hide this entry on the website
+   */
+  isActive?: boolean | null;
+  /**
+   * The value/details for this information field
+   */
+  details?: string | null;
+  /**
+   * Upload the PDF document
+   */
+  document?: (number | null) | Media;
+  /**
+   * External document URL (alternative to upload, e.g., Google Drive link)
+   */
+  documentUrl?: string | null;
+  /**
+   * Teaching staff breakdown (shown in Section C)
+   */
+  staffSummary?: {
+    /**
+     * Total number of teachers (auto-calculated if empty)
+     */
+    totalTeachers?: number | null;
+    /**
+     * Post Graduate Teachers
+     */
+    pgt?: number | null;
+    /**
+     * Trained Graduate Teachers
+     */
+    tgt?: number | null;
+    /**
+     * Primary Teachers
+     */
+    prt?: number | null;
+  };
+  /**
+   * Staff information details (Section D)
+   */
+  staffDetails?: {
+    /**
+     * Number of staff (e.g., Principal: 1, Vice Principal: 2)
+     */
+    count?: number | null;
+    /**
+     * Format: "2:1" or "1:30"
+     */
+    teacherStudentRatio?: string | null;
+  };
+  /**
+   * Board examination results
+   */
+  resultData?: {
+    /**
+     * Academic year (e.g., 2024)
+     */
+    year: number;
+    /**
+     * Number of registered students
+     */
+    registered: number;
+    /**
+     * Number of students passed
+     */
+    passed: number;
+    /**
+     * Auto-calculated if left empty. Override if needed.
+     */
+    passPercentage?: number | null;
+    /**
+     * e.g., "All pass", "100% pass", "3 compartments"
+     */
+    remarks?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "textbooks".
  */
 export interface Textbook {
@@ -1396,6 +1494,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'fees';
         value: number | Fee;
+      } | null)
+    | ({
+        relationTo: 'appendix';
+        value: number | Appendix;
       } | null)
     | ({
         relationTo: 'textbooks';
@@ -1951,6 +2053,44 @@ export interface FeesSelect<T extends boolean = true> {
   description?: T;
   file?: T;
   isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "appendix_select".
+ */
+export interface AppendixSelect<T extends boolean = true> {
+  section?: T;
+  serialNumber?: T;
+  title?: T;
+  isActive?: T;
+  details?: T;
+  document?: T;
+  documentUrl?: T;
+  staffSummary?:
+    | T
+    | {
+        totalTeachers?: T;
+        pgt?: T;
+        tgt?: T;
+        prt?: T;
+      };
+  staffDetails?:
+    | T
+    | {
+        count?: T;
+        teacherStudentRatio?: T;
+      };
+  resultData?:
+    | T
+    | {
+        year?: T;
+        registered?: T;
+        passed?: T;
+        passPercentage?: T;
+        remarks?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
