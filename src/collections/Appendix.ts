@@ -94,50 +94,6 @@ const Appendix: CollectionConfig = {
       },
     },
 
-    // CONDITIONAL: STAFF SUMMARY (for Academics section - Section C)
-    {
-      name: 'staffSummary',
-      type: 'group',
-      admin: {
-        condition: (data) => data.section === 'academics',
-        description: 'Teaching staff breakdown (shown in Section C)',
-      },
-      fields: [
-        {
-          name: 'totalTeachers',
-          type: 'number',
-          min: 0,
-          admin: {
-            description: 'Total number of teachers (auto-calculated if empty)',
-          },
-        },
-        {
-          name: 'pgt',
-          type: 'number',
-          min: 0,
-          admin: {
-            description: 'Post Graduate Teachers',
-          },
-        },
-        {
-          name: 'tgt',
-          type: 'number',
-          min: 0,
-          admin: {
-            description: 'Trained Graduate Teachers',
-          },
-        },
-        {
-          name: 'prt',
-          type: 'number',
-          min: 0,
-          admin: {
-            description: 'Primary Teachers',
-          },
-        },
-      ],
-    },
-
     // CONDITIONAL: STAFF DETAILS (for Staff section - Section D)
     {
       name: 'staffDetails',
@@ -231,14 +187,6 @@ const Appendix: CollectionConfig = {
           if (!data.resultData.passPercentage || data.resultData.passPercentage === 0) {
             const percentage = (data.resultData.passed / data.resultData.registered) * 100;
             data.resultData.passPercentage = Math.round(percentage * 100) / 100; // Round to 2 decimals
-          }
-        }
-
-        // Auto-calculate total teachers if not provided
-        if (data?.staffSummary) {
-          const { pgt = 0, tgt = 0, prt = 0 } = data.staffSummary;
-          if (!data.staffSummary.totalTeachers || data.staffSummary.totalTeachers === 0) {
-            data.staffSummary.totalTeachers = pgt + tgt + prt;
           }
         }
 

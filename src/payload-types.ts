@@ -106,6 +106,7 @@ export interface Config {
     appendix: Appendix;
     assembly: Assembly;
     newsletter: Newsletter;
+    'staff-summary': StaffSummary;
     textbooks: Textbook;
     clubs: Club;
     exports: Export;
@@ -155,6 +156,7 @@ export interface Config {
     appendix: AppendixSelect<false> | AppendixSelect<true>;
     assembly: AssemblySelect<false> | AssemblySelect<true>;
     newsletter: NewsletterSelect<false> | NewsletterSelect<true>;
+    'staff-summary': StaffSummarySelect<false> | StaffSummarySelect<true>;
     textbooks: TextbooksSelect<false> | TextbooksSelect<true>;
     clubs: ClubsSelect<false> | ClubsSelect<true>;
     exports: ExportsSelect<false> | ExportsSelect<true>;
@@ -1116,27 +1118,6 @@ export interface Appendix {
    */
   documentUrl?: string | null;
   /**
-   * Teaching staff breakdown (shown in Section C)
-   */
-  staffSummary?: {
-    /**
-     * Total number of teachers (auto-calculated if empty)
-     */
-    totalTeachers?: number | null;
-    /**
-     * Post Graduate Teachers
-     */
-    pgt?: number | null;
-    /**
-     * Trained Graduate Teachers
-     */
-    tgt?: number | null;
-    /**
-     * Primary Teachers
-     */
-    prt?: number | null;
-  };
-  /**
    * Staff information details (Section D)
    */
   staffDetails?: {
@@ -1217,6 +1198,45 @@ export interface Newsletter {
    * Show this newsletter on the website
    */
   isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Teaching staff breakdown shown in Section C: Result and Academics
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "staff-summary".
+ */
+export interface StaffSummary {
+  id: number;
+  /**
+   * Total number of teachers (can be auto-calculated or manually entered)
+   */
+  totalTeachers: number;
+  /**
+   * Post Graduate Teachers
+   */
+  pgt: number;
+  /**
+   * Trained Graduate Teachers
+   */
+  tgt: number;
+  /**
+   * Primary Teachers
+   */
+  prt: number;
+  /**
+   * Toggle to show/hide staff summary on the website
+   */
+  isActive?: boolean | null;
+  /**
+   * Optional: Academic year this data is for (e.g., "2024-2025")
+   */
+  academicYear?: string | null;
+  /**
+   * When was this data last updated
+   */
+  lastUpdated?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1557,6 +1577,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'newsletter';
         value: number | Newsletter;
+      } | null)
+    | ({
+        relationTo: 'staff-summary';
+        value: number | StaffSummary;
       } | null)
     | ({
         relationTo: 'textbooks';
@@ -2128,14 +2152,6 @@ export interface AppendixSelect<T extends boolean = true> {
   details?: T;
   document?: T;
   documentUrl?: T;
-  staffSummary?:
-    | T
-    | {
-        totalTeachers?: T;
-        pgt?: T;
-        tgt?: T;
-        prt?: T;
-      };
   staffDetails?:
     | T
     | {
@@ -2174,6 +2190,21 @@ export interface NewsletterSelect<T extends boolean = true> {
   description?: T;
   file?: T;
   isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "staff-summary_select".
+ */
+export interface StaffSummarySelect<T extends boolean = true> {
+  totalTeachers?: T;
+  pgt?: T;
+  tgt?: T;
+  prt?: T;
+  isActive?: T;
+  academicYear?: T;
+  lastUpdated?: T;
   updatedAt?: T;
   createdAt?: T;
 }

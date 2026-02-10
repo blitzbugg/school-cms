@@ -44,6 +44,7 @@ import Textbook from "./collections/Textbook";
 import Appendix from "./collections/Appendix";
 import { Assembly } from "./collections/Assembly";
 import NewsLetter from "./collections/NewsLetter";
+import StaffSummary from "./collections/StaffSummary";
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -112,6 +113,7 @@ export default buildConfig({
     Appendix,
     Assembly,
     NewsLetter,
+    StaffSummary,
     Textbook,
     Clubs,
   ],
