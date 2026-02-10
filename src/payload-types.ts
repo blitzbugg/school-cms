@@ -105,6 +105,7 @@ export interface Config {
     fees: Fee;
     appendix: Appendix;
     assembly: Assembly;
+    newsletter: Newsletter;
     textbooks: Textbook;
     clubs: Club;
     exports: Export;
@@ -153,6 +154,7 @@ export interface Config {
     fees: FeesSelect<false> | FeesSelect<true>;
     appendix: AppendixSelect<false> | AppendixSelect<true>;
     assembly: AssemblySelect<false> | AssemblySelect<true>;
+    newsletter: NewsletterSelect<false> | NewsletterSelect<true>;
     textbooks: TextbooksSelect<false> | TextbooksSelect<true>;
     clubs: ClubsSelect<false> | ClubsSelect<true>;
     exports: ExportsSelect<false> | ExportsSelect<true>;
@@ -1195,6 +1197,31 @@ export interface Assembly {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "newsletter".
+ */
+export interface Newsletter {
+  id: number;
+  /**
+   * Title for this newsletter (e.g., "Newsletter - July 2024")
+   */
+  title: string;
+  /**
+   * Description of what this newsletter is for
+   */
+  description?: string | null;
+  /**
+   * Upload the newsletter PDF file
+   */
+  file: number | Media;
+  /**
+   * Show this newsletter on the website
+   */
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "textbooks".
  */
 export interface Textbook {
@@ -1526,6 +1553,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'assembly';
         value: number | Assembly;
+      } | null)
+    | ({
+        relationTo: 'newsletter';
+        value: number | Newsletter;
       } | null)
     | ({
         relationTo: 'textbooks';
@@ -2131,6 +2162,18 @@ export interface AssemblySelect<T extends boolean = true> {
   isActive?: T;
   photo?: T;
   description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "newsletter_select".
+ */
+export interface NewsletterSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  file?: T;
+  isActive?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -43,6 +43,7 @@ import Fees from "./collections/Fees";
 import Textbook from "./collections/Textbook";
 import Appendix from "./collections/Appendix";
 import { Assembly } from "./collections/Assembly";
+import NewsLetter from "./collections/NewsLetter";
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -110,6 +111,7 @@ export default buildConfig({
     Fees,
     Appendix,
     Assembly,
+    NewsLetter,
     Textbook,
     Clubs,
   ],
