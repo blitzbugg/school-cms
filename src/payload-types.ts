@@ -1118,19 +1118,6 @@ export interface Appendix {
    */
   documentUrl?: string | null;
   /**
-   * Staff information details (Section D)
-   */
-  staffDetails?: {
-    /**
-     * Number of staff (e.g., Principal: 1, Vice Principal: 2)
-     */
-    count?: number | null;
-    /**
-     * Format: "2:1" or "1:30"
-     */
-    teacherStudentRatio?: string | null;
-  };
-  /**
    * Board examination results
    */
   resultData?: {
@@ -2152,12 +2139,6 @@ export interface AppendixSelect<T extends boolean = true> {
   details?: T;
   document?: T;
   documentUrl?: T;
-  staffDetails?:
-    | T
-    | {
-        count?: T;
-        teacherStudentRatio?: T;
-      };
   resultData?:
     | T
     | {

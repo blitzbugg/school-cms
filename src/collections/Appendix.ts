@@ -95,30 +95,6 @@ const Appendix: CollectionConfig = {
     },
 
     // CONDITIONAL: STAFF DETAILS (for Staff section - Section D)
-    {
-      name: 'staffDetails',
-      type: 'group',
-      admin: {
-        condition: (data) => data.section === 'staff',
-        description: 'Staff information details (Section D)',
-      },
-      fields: [
-        {
-          name: 'count',
-          type: 'number',
-          admin: {
-            description: 'Number of staff (e.g., Principal: 1, Vice Principal: 2)',
-          },
-        },
-        {
-          name: 'teacherStudentRatio',
-          type: 'text',
-          admin: {
-            description: 'Format: "2:1" or "1:30"',
-          },
-        },
-      ],
-    },
 
     // CONDITIONAL: RESULT DATA (for Class X & XII results)
     {
