@@ -1124,7 +1124,7 @@ export interface Appendix {
     /**
      * Academic year (e.g., 2024)
      */
-    year: number;
+    year: string;
     /**
      * Number of registered students
      */
