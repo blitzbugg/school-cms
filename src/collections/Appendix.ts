@@ -107,10 +107,8 @@ const Appendix: CollectionConfig = {
       fields: [
         {
           name: 'year',
-          type: 'number',
+          type: 'text',
           required: true,
-          min: 2000,
-          max: 2100,
           admin: {
             description: 'Academic year (e.g., 2024)',
           },
