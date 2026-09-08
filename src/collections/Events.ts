@@ -46,11 +46,11 @@ export const Events: CollectionConfig = {
       admin: { date: {displayFormat: 'dd-MM-yyyy'}}
     }, 
     {
-      name: "images", 
+      name: "media", 
       type: "upload", 
       relationTo : "media",
       admin: {
-        description: "Upload images related to the event",
+        description: "Upload images or videos related to the event.",
       },
     },
   ],

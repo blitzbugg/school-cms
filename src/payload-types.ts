@@ -412,9 +412,9 @@ export interface Event {
   category: 'Sports' | 'Cultural' | 'Academic' | 'Other';
   publishDate?: string | null;
   /**
-   * Upload images related to the event
+   * Upload images or videos related to the event.
    */
-  images?: (number | null) | Media;
+  media?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -1729,7 +1729,7 @@ export interface EventsSelect<T extends boolean = true> {
   content?: T;
   category?: T;
   publishDate?: T;
-  images?: T;
+  media?: T;
   updatedAt?: T;
   createdAt?: T;
 }
